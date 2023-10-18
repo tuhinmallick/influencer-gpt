@@ -14,5 +14,4 @@ def create_video_script(topic):
         {"role": "user", "content": f"create a viral shortform video skript for a talking head about: {topic}. Give just the script to say, no meta desciption or anything else."}
     ]
     )
-    script = completion.choices[0].message.get("content")
-    return script
+    return completion.choices[0].message.get("content")

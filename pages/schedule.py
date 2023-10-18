@@ -16,7 +16,7 @@ st.title("Schedule a Post")
 
 # User input for topic, date, and time
 topic = st.text_input("Topic")
-date = st.date_input("Date", min_value=datetime.today())
+date = st.date_input("Date", min_value=datetime.now())
 time_input = st.time_input("Time")
 
 if st.button("Confirm"):

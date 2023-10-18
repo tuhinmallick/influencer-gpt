@@ -45,13 +45,11 @@ if uploaded_image is not None:
     source_url = "uploaded_image.png"
     # Store the last uploaded image in a session variable
     st.session_state['last_uploaded_image'] = "uploaded_image.png"
+elif 'last_uploaded_image' in st.session_state and st.button("Click on the image to reuse it"):
+    st.image(st.session_state['last_uploaded_image'])
+    source_url = st.session_state['last_uploaded_image']
 else:
-    # Option to reuse the last uploaded image
-    if 'last_uploaded_image' in st.session_state and st.button("Click on the image to reuse it"):
-        st.image(st.session_state['last_uploaded_image'])
-        source_url = st.session_state['last_uploaded_image']
-    else:
-        source_url = "https://cdn.discordapp.com/attachments/1116787243634397345/1146111608129597450/hypercubefx_face_like_terminator_bb7255e5-efca-489d-bf9e-9aeb750a6bef.png"
+    source_url = "https://cdn.discordapp.com/attachments/1116787243634397345/1146111608129597450/hypercubefx_face_like_terminator_bb7255e5-efca-489d-bf9e-9aeb750a6bef.png"
 
 
 # Save button to persistently save the settings
@@ -66,10 +64,10 @@ if st.button("Save Settings"):
         'video_engine': st.session_state['video_engine'],
         'last_uploaded_image': st.session_state.get('last_uploaded_image', '')
     }
-    
+
     # Save settings data to a JSON file
     with open("settings.json", "w") as f:
         json.dump(settings_data, f)
-    
+
     # Display success message
     st.success("Settings saved successfully!")
