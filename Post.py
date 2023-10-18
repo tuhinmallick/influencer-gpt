@@ -55,9 +55,7 @@ def load_settings():
 def main():
     load_settings()
     st.header("Influencer GPT :bird:")
-    query = st.text_input("Trend Topic")
-
-    if query:
+    if query := st.text_input("Trend Topic"):
         with st.spinner('Loading trends...'):
             trends = get_trends(query, st.session_state)
 
@@ -67,10 +65,10 @@ def main():
         with st.spinner('Generating script...'):
             # Use the selected trend to generate the script
             script = create_video_script(selected_trend)
-        
+
         # Let the user edit the generated script
         edited_script = st.text_area("Edit the generated script:", script)
-        
+
         # Button to confirm editing and proceed to video generation
         if st.button("Confirm and Generate Video"):
             # Use the edited script for video generation

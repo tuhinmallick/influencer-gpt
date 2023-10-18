@@ -21,11 +21,8 @@ def search_trends(topic, source):
                 {"role": "user", "content": f"What are the top trends about {topic}?"}
             ]
         )
-        
-        # Here we assume that the model's response is a comma-separated list of trends.
-        # You can adjust the response structure depending on how you train or instruct the model.
-        trends = completion.choices[0].message["content"].split('\n')
-        return trends
+
+        return completion.choices[0].message["content"].split('\n')
 
 def get_trends(query, session_state):
     # Initialization
@@ -39,7 +36,4 @@ def get_trends(query, session_state):
     if st.button("Clear"):
         st.session_state.get().clear()
 
-    # Decision on which trend search function to use
-    trends = search_trends(query, trend_function_choice)
-
-    return trends
+    return search_trends(query, trend_function_choice)
